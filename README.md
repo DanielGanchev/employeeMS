@@ -1,75 +1,91 @@
-Employee Management System
+# Employee Management System
+
 This project is divided into two main parts: the backend and the frontend.
 
-Backend
-The backend is a Spring Boot application located in the employeeMS/employee-system-backend/ directory. It provides a RESTful API for managing employees. The main classes are:
+## Backend
 
-EmployeeController: This class handles HTTP requests and responses. It uses the EmployeeService to perform operations.
+The backend is a Spring Boot application located in the `employeeMS/employee-system-backend/` directory. It provides a RESTful API for managing employees.
 
-EmployeeService: This is an interface that defines the operations that can be performed on employees.
+### Main Classes
+- **EmployeeController**: Handles HTTP requests and responses using the EmployeeService.
+- **EmployeeService**: Interface defining operations on employees.
+- **EmployeeServiceImpl**: Implementation of the EmployeeService interface.
+- **EmployeeMapper**: Maps between Employee and EmployeeDto objects.
 
-EmployeeServiceImpl: This class implements the EmployeeService interface.
+The project uses Maven, as specified in the `pom.xml` file.
 
-EmployeeMapper: This class is used to map between Employee and EmployeeDto objects.
+## Frontend
 
-The project is built using Maven, as specified in the pom.xml file.
+The frontend is a React application located in the `employeeMS/ems-frontend/` directory. It provides a user interface for managing employees.
 
-Frontend
-The frontend is a React application located in the employeeMS/ems-frontend/ directory. It provides a user interface for managing employees. The main files are:
+### Main Files
+- **App.jsx**: Main component of the application.
+- **EmployeeComponent.jsx**: Manages individual employees.
+- **ListEmployeeComponent.jsx**: Displays a list of all employees.
+- **EmployeeService.js**: Makes HTTP requests to the backend.
 
-App.jsx: This is the main component of the application.
+The project uses npm, as specified in the `package.json` file.
 
-EmployeeComponent.jsx: This component is used to display and manage individual employees.
+## Building and Running the Project
 
-ListEmployeeComponent.jsx: This component is used to display a list of all employees.
-
-EmployeeService.js: This service is used to make HTTP requests to the backend.
-
-The project is built using npm, as specified in the package.json file.
-
-Building and Running the Project
-To build and run the backend, navigate to the employeeMS/employee-system-backend/ directory and run the following command:
-
+### Backend
+Navigate to the `employeeMS/employee-system-backend/` directory and run:
+```sh
 mvnw spring-boot:run
+```
 
-To build and run the frontend, navigate to the employeeMS/ems-frontend/ directory and run the following commands:
+## Employee Management API
 
-npm install
-npm run dev
+This API facilitates the management of employees through a set of CRUD (Create, Read, Update, Delete) operations. Below is a detailed guide on each endpoint provided by the API.
 
-Please note that you need to have Maven and npm installed on your machine to build and run the project.
+### Endpoints
 
-Endpoints
-This controller provides endpoints for managing employees.
+#### Create a New Employee
 
-POST /create
-This endpoint is used to create a new employee.
+- **Method:** POST
+- **Endpoint:** `/create`
+- **Description:** Creates a new employee.
+- **Request Body:** `EmployeeDto` object.
+- **Response:** Created `EmployeeDto` object.
+- **Status Codes:**
+  - `201 CREATED` - Successfully created.
 
-Request body: An EmployeeDto object representing the employee to be created.
-Response: The created EmployeeDto object.
-Status code: 201 CREATED
-GET /get/{id}
-This endpoint is used to retrieve an employee by their ID.
+#### Retrieve an Employee by ID
 
-Path variable: id - The ID of the employee to retrieve.
-Response: The EmployeeDto object of the retrieved employee.
-Status code: 200 OK
-GET /get/all
-This endpoint is used to retrieve all employees.
+- **Method:** GET
+- **Endpoint:** `/get/{id}`
+- **Description:** Retrieves an employee by their unique ID.
+- **Path Variable:** `id` - The ID of the employee.
+- **Response:** `EmployeeDto` object.
+- **Status Codes:**
+  - `200 OK` - Successfully retrieved.
 
-Response: An Iterable<EmployeeDto> object containing all employees.
-Status code: 200 OK
-PUT /update/{id}
-This endpoint is used to update an existing employee.
+#### Retrieve All Employees
 
-Path variable: id - The ID of the employee to update.
-Request body: An EmployeeDto object representing the updated employee.
-Response: The EmployeeDto object of the updated employee.
-Status code: 200 OK
-DELETE /delete/{id}
-This endpoint is used to delete an employee by their ID.
+- **Method:** GET
+- **Endpoint:** `/get/all`
+- **Description:** Retrieves all employees.
+- **Response:** Iterable of `EmployeeDto` objects.
+- **Status Codes:**
+  - `200 OK` - Successfully retrieved.
 
-Path variable: id - The ID of the employee to delete.
-Status code: 200 OK if the employee was successfully deleted, 404 NOT FOUND if the employee does not exist.
-Please note that all endpoints should be prefixed with the base URL of your application.
+#### Update an Existing Employee
 
+- **Method:** PUT
+- **Endpoint:** `/update/{id}`
+- **Description:** Updates an existing employee.
+- **Path Variable:** `id` - The ID of the employee.
+- **Request Body:** `EmployeeDto` object.
+- **Response:** Updated `EmployeeDto` object.
+- **Status Codes:**
+  - `200 OK` - Successfully updated.
+
+#### Delete an Employee by ID
+
+- **Method:** DELETE
+- **Endpoint:** `/delete/{id}`
+- **Description:** Deletes an employee by their ID.
+- **Path Variable:** `id` - The ID of the employee.
+- **Status Codes:**
+  - `200 OK` - Successfully deleted.
+  - `404 NOT FOUND` - Employee not found.
